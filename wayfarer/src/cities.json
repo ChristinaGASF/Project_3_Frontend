@@ -1,0 +1,43 @@
+[
+    {
+        "id":1,
+        "name": "London",
+        "country": "United Kingdom",
+        "img": "http://www.adambutlerphotography.com/wordpress/wp-content/uploads/2015/01/Panorama-of-Hungerford-Bridge-and-London-Eye.jpg",
+        "mainImg": "./images/london_hero.jpg"
+       
+    },
+    {
+        "id":2,
+        "name": "San Francisco",
+        "country": "United States",
+        "img": "https://upload.wikimedia.org/wikipedia/commons/c/cd/SanFrancisco_from_TwinPeaks_dusk_MC.jpg",
+        "mainImg": "./images/sanfrancisco_hero.jpg"
+       
+    },
+    {
+        "id":3,
+        "name": "Sydney",
+        "country": "Australia",
+        "img": "https://c1.staticflickr.com/3/2918/32270372283_61b481d428_b.jpg",
+        "mainImg": "./images/sydney_hero.jpg"
+       
+    },
+    {
+        "id":4,
+        "name": "Seattle",
+        "country": "United States",
+        "img": "https://upload.wikimedia.org/wikipedia/commons/a/aa/20160124_GFJ2741-kerry-park-skyline_seattle-wa-panoramic.jpg",
+        "mainImg": "./images/seattle-hero.jpg"
+       
+    },
+    {
+        "id":5,
+        "name": "New York",
+        "country": "United States",
+        "img": "http://www.launchphotography.com/New_York_City_panorama.jpg",
+        "mainImg": "./images/seattle-hero.jpg"
+       
+    }
+    
+]

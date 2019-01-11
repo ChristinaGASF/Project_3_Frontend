@@ -1,32 +1,45 @@
 import React, { Component } from 'react'
 import {Well, Panel } from 'react-bootstrap'
 import './Cities.css'
+import cities from '../../cities.json'
 
-var imgUrl =  'https://upload.wikimedia.org/wikipedia/commons/c/cd/SanFrancisco_from_TwinPeaks_dusk_MC.jpg'
-var cityWell = {
-    backgroundImage:  'url(' + imgUrl + ')',
-    backgroundSize: 'cover',
-    backgroundPosition: '50%',
-    textAlign: 'center'
-    }
+
+
+    
 
 class Cities extends Component{
+    constructor (props) {
+        super(props)
+        this.state = {
+            cities: [],
+            currentCity: []
+        }
+    }
+    
+    componentDidMount(){
+        this.setState({ cities: cities});
+        
+    }
+    
+    handleCity=(city)=>{
+        console.log(city);
+        // var cityid = (e.target.className==='title')?e.target.parentNode.dataset.cityid:e.target.dataset.cityid;
+        console.log(city.name);
+        this.props.currentCity(city)
+    }
     render(){
+        var cityList = cities.map((city, index) =>
+            <Well currentCity={this.state.currentCity} key={index} onClick={(e)=>(this.handleCity(city))} data-cityid={city.id} style={{backgroundImage:`url(${city.img})`}}><h2 className="title">{city.name}</h2></Well>
+        )
         return(
             <React.Fragment>
                 <Panel.Body>
-                    {/* This part will grab our city data and populate dynamically */}
-                    <Well style={cityWell} bsSize="large"><h2>San Francisco</h2></Well>
-                    <Well style={cityWell} bsSize="large"><h2>San Francisco</h2></Well>
-                    <Well style={cityWell} bsSize="large"><h2>San Francisco</h2></Well>
-                    <Well style={cityWell} bsSize="large"><h2>San Francisco</h2></Well>
-                    <Well style={cityWell} bsSize="large"><h2>San Francisco</h2></Well>
-                    {/* ////////////////////////////////////////////////// */}
+                    {cityList}
                 </Panel.Body>
             </React.Fragment>
         )
     }
 }
 
-
 export default Cities
+

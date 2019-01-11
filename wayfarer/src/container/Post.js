@@ -4,6 +4,15 @@ import Cities from '../components/Main/Cities'
 import City from '../components/Main/City'
 
 class Post extends Component{
+    state={
+        city: []
+    }
+    currentCity=(city)=>{
+        console.log(city);
+        this.setState({city: city})
+        
+    }
+
     render(){
         return(
             <React.Fragment>
@@ -15,13 +24,13 @@ class Post extends Component{
                                 <Panel.Heading>
                                     <Panel.Title componentClass="h2">Cities</Panel.Title>
                                 </Panel.Heading>
-                                <Cities />
+                                <Cities currentCity={this.currentCity}/>
                             </Panel>
                         </Col>
                         <Col xs={12} md={8}>
                                 <Panel>
                                     <Panel.Body>
-                                        <City />
+                                        <City city={this.state.city}/>
                                     </Panel.Body>
                                 </Panel>
                         </Col>

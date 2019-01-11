@@ -7,21 +7,14 @@ import PostList from './PostList'
 class City extends Component{
     constructor(props, context) {
         super(props, context);
-    
-        // this.handleHide = this.handleHide.bind(this);
-    
         this.state = {
             NewPostShow: false
-        
     };
-    
 }
     handleNewPostShow=()=>{
-    
     this.setState({ NewPostShow: true });
     }
     handleNewPostHide=()=> {
-
     this.setState({ NewPostShow: false });
 }
     
@@ -30,8 +23,8 @@ class City extends Component{
             <React.Fragment>
                 <Row className="show-grid">
                     <Col xs={12} md={4}>
-                        <h2 className='cityTitle'>Example City</h2>
-                        <h4>Country</h4>
+                        <h2 className='cityTitle'>{this.props.city.name}</h2>
+                        <h4>{this.props.city.country}</h4>
                         
                 <Button block bsStyle="primary" bsSize="large" onClick={this.handleNewPostShow}>
                 New Post
@@ -40,7 +33,7 @@ class City extends Component{
                         
                     </Col>
                     <Col xs={12} md={8}>
-                        <Image src="https://cdn.theatlantic.com/assets/media/img/mt/2017/11/Salesforce_Tower_Skyline/lead_720_405.jpg?mod=1533691912" responsive rounded />  
+                        <Image src={this.props.city.mainImg} responsive rounded />  
                     </Col>
                 </Row>
                 
