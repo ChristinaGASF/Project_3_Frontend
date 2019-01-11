@@ -8,7 +8,7 @@ class Home extends Component{
             <React.Fragment>
             <Hero />
             <div>
-                <h4>Wayfarer is a travel site for users to share tips about their favorite museums, historical sites and  landmark iconic city spots. </h4>
+                <h4>Classic Traveler is a travel site for users to share tips about their favorite museums, historical sites and  landmark iconic city spots. </h4>
             </div>
             <Grid>
                 <Row className="show-grid">

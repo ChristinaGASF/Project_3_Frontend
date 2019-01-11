@@ -17,9 +17,9 @@ class App extends Component {
         <Header />
         <Switch > 
         <Route path="/home" component={Home}/>
-         <Route path="/post" component={Post}/>
-         <Route path="/profile" component={Profile}/>
-         <Redirect from="/" to="home" />
+        <Route path="/post" component={Post}/>
+        <Route path="/profile" component={Profile}/>
+        <Redirect from="/" to="home" />
         </Switch>
         {/* <Cities />
         <Post /> */}

@@ -29,7 +29,7 @@ class Header extends Component{
                 <Navbar>
                     <Navbar.Header>
                         <Navbar.Brand>
-                        <Link to="/">Wayfarer - Classic</Link>
+                        <Link to="/">Classic Traveler</Link>
                         </Navbar.Brand>
                     </Navbar.Header>
                     <Nav pullRight>
