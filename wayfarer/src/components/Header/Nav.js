@@ -56,9 +56,9 @@ class Header extends Component{
                         Form here
                     </Modal.Body>
                         <Modal.Footer>
-                            <Button onClick={this.handleHide}>Close</Button>
+                            <Button onClick={this.handleSignUpHide}>Close</Button>
                         </Modal.Footer>
-                    </Modal>
+                </Modal>
 
                     <Modal
                     show={this.state.signInShow}
@@ -75,7 +75,7 @@ class Header extends Component{
                         Form Here
                     </Modal.Body>
                         <Modal.Footer>
-                            <Button onClick={this.handleHide}>Close</Button>
+                            <Button onClick={this.handleSignUpHide}>Close</Button>
                         </Modal.Footer>
                     </Modal>
                 

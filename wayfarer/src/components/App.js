@@ -3,6 +3,7 @@ import Header from './Header/Nav'
 import Home from '../container/Home'
 import Post from '../container/Post'
 import './App.css';
+import {Redirect} from 'react-router-dom'
 import {Route, Switch} from 'react-router-dom'
 
 class App extends Component {
@@ -14,9 +15,9 @@ class App extends Component {
       <div className="App">
         <Header />
         <Switch > 
-          {/* <Route path="/home" component={Home}/> */}
-          <Home />
-          {/* <Route path="/post" component={Post}/> */}
+        <Route path="/home" component={Home}/>
+         <Route path="/post" component={Post}/>
+         <Redirect from="/" to="home" />
         </Switch>
         {/* <Cities />
         <Post /> */}
