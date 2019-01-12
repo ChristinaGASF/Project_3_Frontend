@@ -8,9 +8,7 @@ import {Redirect} from 'react-router-dom'
 import {Route, Switch} from 'react-router-dom'
 
 class App extends Component {
-  // componentDidMount(){
-  //   this.props.history.push('/Home')
-  // }
+ 
   render() {
     return (
       <div className="App">
@@ -21,8 +19,7 @@ class App extends Component {
         <Route path="/profile" component={Profile}/>
         <Redirect from="/" to="home" />
         </Switch>
-        {/* <Cities />
-        <Post /> */}
+      
       </div>
     );
   }

@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
-import {Navbar,Nav, NavItem,Modal, Button } from 'react-bootstrap'
+import {Navbar,Nav, NavItem,Modal, Button, Form, FormGroup, Col, FormControl, ControlLabel } from 'react-bootstrap'
 import Hero from './Hero'
 import {Link } from 'react-router-dom'
+import SignUpForm from './SignUpForm'
 
 class Header extends Component{
     constructor(props, context) {
@@ -11,17 +12,18 @@ class Header extends Component{
     
         this.state = {
             signUpShow: false,
-            signInShow: false
-      };
-      }
-    
-      handleSignUpHide=()=>{
-          //ajax call
-        this.setState({ signUpShow: false });
-      }
-      handleSignInHide=()=> {
-        //ajax call
-      this.setState({ signInShow: false });
+            signInShow: false,
+
+    };
+    }
+
+    handleSignUpHide=()=>{
+        
+    this.setState({ signUpShow: false });
+    }
+    handleSignInHide=()=> {
+   
+    this.setState({ signInShow: false });
     }
     render(){
         return(
@@ -53,10 +55,9 @@ class Header extends Component{
                         </Modal.Title>
                     </Modal.Header>
                     <Modal.Body>
-                        Form here
+                        <SignUpForm />
                     </Modal.Body>
-                        <Modal.Footer>
-                            <Button onClick={this.handleSignUpHide}>Close</Button>
+                        <Modal.Footer >
                         </Modal.Footer>
                 </Modal>
 

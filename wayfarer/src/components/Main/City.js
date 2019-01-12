@@ -26,9 +26,9 @@ class City extends Component{
                         <h2 className='cityTitle'>{this.props.city.name}</h2>
                         <h4>{this.props.city.country}</h4>
                         
-                <Button block bsStyle="primary" bsSize="large" onClick={this.handleNewPostShow}>
+                <Button  className="newPost" block bsStyle="primary" bsSize="large" onClick={this.handleNewPostShow}>
                 New Post
-                </Button>
+                </Button >
                
                         
                     </Col>
@@ -38,7 +38,7 @@ class City extends Component{
                 </Row>
                 
                 
-                <PostList />
+                <PostList currentCity={this.props.city}/>
                 
                 <Modal
                     show={this.state.NewPostShow}
