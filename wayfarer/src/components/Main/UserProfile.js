@@ -1,64 +1,67 @@
 import React, { Component } from 'react'
-import { Form, FormGroup } from 'react-bootstrap'
+import { Form , FormGroup, Col, ControlLabel, FormControl,  Button} from 'react-bootstrap'
 
+// this.user. name
+// this.user. join date
 
 class UserProfile extends Component{
-  constructor(props, context) {
-    super(props, context);
+  constructor(props ) {
+    super(props );
 
-    handleChange=(e)=>{
-      console.log(e.target.value);
-      this.setState({this: e.target.value})
+    this.state = {value: ''};
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleUpdate.bind(this);
   }
 
+  handleChange(event) {
+    this.setState({value: event.target.value});
+  }
+  handleUpdate(event) {
+    alert('Updated' + this.state.value);
+    event.preventDefault();
+  }
 
-    render() {
+    render(){
         return (
+
         
-          <Form>
-          <FormGroup>
-              <ControlLabel>Name</ControlLabel>
-              <FormControl
-                  type="text"
-                  placeholder="Name" />
-              <FormControl.Feedback />
-          < FormGroup />
+        <Form horizontal>
 
-          <FormGroup controlId="formControlsTextarea">
-              <ControlLabel>Password</ControlLabel>
-              <FormControl 
-                  componentClass="textarea" 
-                  placeholder="Password" 
-                  input type="text" value={this.state.value} onChange={this.handleChange}
-                  />
-          < FormGroup />
+        <FormGroup controlId="formHorizontalName">
+        <img width={200} height={200} src="../images/default_user_icon.png"alt="thumbnail" />
+        </FormGroup>
 
-          <FormGroup controlId="formControlsTextarea">
-              <ControlLabel>Current City</ControlLabel>
-              <FormControl 
-                  componentClass="textarea" 
-                  placeholder="Current City" 
-                  input type="text" value={this.state.value} onChange={this.handleChange}
-                  />
+        <FormGroup controlId="formHorizontalName">
+          <Col componentClass={ControlLabel} sm={6}> User Name</Col>
+          <Col sm={6}>{} </Col>
+        </FormGroup>
+
+        <FormGroup controlId="formHorizontalName">
+          <Col componentClass={ControlLabel} sm={6}> Join Date</Col>
+          <Col sm={6}>{} </Col>
+        </FormGroup>
+
+          <FormGroup controlId="formHorizontalPassword">
+            <Col componentClass={ControlLabel} sm={6}> Password</Col>
+            <Col sm={6}>
+            <FormControl type="password" placeholder="Password" input type="text" value={this.state.value} onChange={this.handleChange} />
+            </Col>
           </FormGroup>
-          
-          <FormGroup controlId="formControlsTextarea">
-              <ControlLabel>Join Date</ControlLabel>
-              <FormControl 
-                  componentClass="textarea" 
-                  placeholder="Join Date" 
-                  input type="text" value={this.state.value} onChange={this.handleChange}
-                  />
-          </FormGroup>
-          </Form>
-     
-   
 
-        );
+          <FormGroup controlId="formHorizontalEmail">
+            <Col componentClass={ControlLabel} sm={6}>Current City</Col>
+            <Col sm={6}>
+            <FormControl type="text" placeholder="Current City" value={this.state.value} onChange={this.handleChange} />
+            </Col>
+          </FormGroup>
+
+         <Button form="updateUser" onClick={this.handleUpdate} >Update</Button>
+
+      </Form>
+       
+        )
       }
     }
 
-
-
-
+  
 export default UserProfile
