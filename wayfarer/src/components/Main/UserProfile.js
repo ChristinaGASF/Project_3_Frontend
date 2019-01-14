@@ -8,6 +8,21 @@ class UserProfile extends Component{
   constructor(props ) {
     super(props );
 
+/*
+    componentDidMount(){
+      this.setState({currentCity : this.props.city})
+   
+      var userID = this.props.userId
+      axios.get(`http://localhost:3001/post/city/${userID}}`)
+      .then(response => {
+          console.log(response);
+          this.setState({
+            userID: response
+          })
+        })
+      
+  }
+*/
     this.state = {value: ''};
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleUpdate.bind(this);
@@ -24,7 +39,6 @@ class UserProfile extends Component{
     render(){
         return (
 
-        
         <Form horizontal>
 
         <FormGroup controlId="formHorizontalName">
@@ -41,27 +55,26 @@ class UserProfile extends Component{
           <Col sm={6}>{} </Col>
         </FormGroup>
 
-          <FormGroup controlId="formHorizontalPassword">
-            <Col componentClass={ControlLabel} sm={6}> Password</Col>
-            <Col sm={6}>
-            <FormControl type="password" placeholder="Password" input value={this.state.value} onChange={this.handleChange} />
-            </Col>
-          </FormGroup>
+        <FormGroup controlId="formHorizontalName">
+          <Col componentClass={ControlLabel} sm={6}> Current City</Col>
+          <Col sm={6}>{} </Col>
+        </FormGroup>
 
-          <FormGroup controlId="formHorizontalEmail">
+{/*
+        <FormGroup controlId="formHorizontalEmail">
             <Col componentClass={ControlLabel} sm={6}>Current City</Col>
             <Col sm={6}>
             <FormControl type="text" placeholder="Current City" value={this.state.value} onChange={this.handleChange} />
             </Col>
-          </FormGroup>
+        </FormGroup>
 
          <Button form="updateUser" onClick={this.handleUpdate} >Update</Button>
+*/}
 
       </Form>
        
         )
       }
     }
-
-  
+ 
 export default UserProfile
