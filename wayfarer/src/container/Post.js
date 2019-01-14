@@ -5,13 +5,16 @@ import City from '../components/Main/City'
 
 class Post extends Component{
     state={
-        city: []
+        city: [],
+        post: []
     }
     currentCity=(city)=>{
         this.setState({city: city})
         
     }
-
+    populatePosts=(post)=>{
+        this.setState({post:post})
+    }
     render(){
         return(
             <React.Fragment>
@@ -23,13 +26,13 @@ class Post extends Component{
                                 <Panel.Heading>
                                     <Panel.Title componentClass="h2">Cities</Panel.Title>
                                 </Panel.Heading>
-                                <Cities currentCity={this.currentCity}/>
+                                <Cities populate={this.populatePosts} currentCity={this.currentCity}/>
                             </Panel>
                         </Col>
                         <Col xs={12} md={8}>
                                 <Panel>
                                     <Panel.Body>
-                                        <City city={this.state.city}/>
+                                        <City post={this.state.post} city={this.state.city}/>
                                     </Panel.Body>
                                 </Panel>
                         </Col>

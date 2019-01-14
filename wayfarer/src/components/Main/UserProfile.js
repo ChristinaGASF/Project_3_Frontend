@@ -44,7 +44,7 @@ class UserProfile extends Component{
           <FormGroup controlId="formHorizontalPassword">
             <Col componentClass={ControlLabel} sm={6}> Password</Col>
             <Col sm={6}>
-            <FormControl type="password" placeholder="Password" input type="text" value={this.state.value} onChange={this.handleChange} />
+            <FormControl type="password" placeholder="Password" input value={this.state.value} onChange={this.handleChange} />
             </Col>
           </FormGroup>
 

@@ -12,9 +12,8 @@ class City extends Component{
             NewPostShow: false,
             title: '',
             body: '',
-            
             userid: localStorage.userid,
-                       
+
     };
 }
     handleNewPostShow=()=>{
@@ -69,7 +68,7 @@ handleBody=(e)=>{
                 </Row>
                 
                 
-                <PostList cityID={this.props.cityid} currentCity={this.props.city}/>
+                <PostList cityID={this.props.cityid} post={this.props.post} currentCity={this.props.city}/>
                 
                 <Modal
                     show={this.state.NewPostShow}

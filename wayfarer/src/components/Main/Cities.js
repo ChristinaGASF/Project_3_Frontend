@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import {Well, Panel } from 'react-bootstrap'
 import './Cities.css'
 import cities from '../../cities.json'
+import axios from 'axios';
 
 
 
@@ -22,8 +23,17 @@ class Cities extends Component{
     }
     
     handleCity=(city)=>{
-        
+        console.log(city);
         this.props.currentCity(city)
+        
+        axios.get(`http://localhost:3001/post/city/${city.id}`)
+        .then(response => {
+            if(response.data.error === undefined){
+                this.props.populate(response.data)
+            }
+            
+            
+        })
     }
     render(){
         var cityList = cities.map((city, index) =>

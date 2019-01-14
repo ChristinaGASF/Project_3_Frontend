@@ -15,44 +15,40 @@ class PostList extends Component{
     }
     
     componentDidMount(){
-        this.setState({currentCity : this.props.city})
+        this.setState({currentCity : this.props.currentCity})
+        console.log(this.props.currentCity);
         
-        var cityID = this.props.cityId
-        axios.get(`http://localhost:3001/post/city/${cityID}}`)
-        .then(response => {
-            console.log(response);
-            this.setState({
-              postList: response
-            })
-          })
+        
         
     }
 
     render(){
-       
+        
+        
+        
+        console.log(this.props.post)
+    var posts = this.props.post.map((post,index)=>{
+        return <Row>
+        <Well className='postItem'>
+            <Media>
+                <Media.Left>
+                    <img width={64} height={64} src="https://upload.wikimedia.org/wikipedia/commons/d/da/Lombardst.jpeg" alt="thumbnail" />
+                </Media.Left>
+                <Media.Body>
+                <Media.Heading>{post.title}</Media.Heading>
+                    <p>
+                        {post.body}
+                    </p>
+                </Media.Body>
+            </Media>
+        </Well>
+    
+</Row>
+    });
         return(
             <React.Fragment>
-                <Row>
-                    {/* Creat this section dynamically */}
-                        <Well className='postItem'>
-                            <Media>
-                                <Media.Left>
-                                    <img width={64} height={64} src="https://upload.wikimedia.org/wikipedia/commons/d/da/Lombardst.jpeg" alt="thumbnail" />
-                                </Media.Left>
-                                <Media.Body>
-                                <Media.Heading>Lombard</Media.Heading>
-                                    <p>
-                                        Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque
-                                        ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at,
-                                        tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate
-                                        fringilla. Donec lacinia congue felis in faucibus.
-                                    </p>
-                                </Media.Body>
-                            </Media>
-                        </Well>
-                    
-                </Row>
-</React.Fragment>
+                {posts}
+            </React.Fragment>
 )
 }
 
