@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
-import {Navbar,Nav, NavItem,Modal, Button, Form, FormGroup, Col, FormControl, ControlLabel } from 'react-bootstrap'
-import Hero from './Hero'
+import {Navbar,Nav, NavItem,Modal, Button } from 'react-bootstrap'
 import {Link } from 'react-router-dom'
 import SignUpForm from './SignUpForm'
+import LoginForm from './LoginForm';
 
 class Header extends Component{
     constructor(props, context) {
@@ -73,10 +73,10 @@ class Header extends Component{
                         </Modal.Title>
                     </Modal.Header>
                     <Modal.Body>
-                        Form Here
+                        <LoginForm />
                     </Modal.Body>
                         <Modal.Footer>
-                            <Button onClick={this.handleSignUpHide}>Close</Button>
+                            <Button onClick={this.handleSignInHide}>Close</Button>
                         </Modal.Footer>
                     </Modal>
                 

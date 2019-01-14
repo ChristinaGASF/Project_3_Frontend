@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
-import { Row, Col, Image, FormGroup, FormControl, ControlLabel, Modal, Button} from 'react-bootstrap'
+import { Row, Col, Image, FormGroup, FormControl, Form, ControlLabel, Modal, Button} from 'react-bootstrap'
 import PostList from './PostList'
+import axios from 'axios'
 
 
 
@@ -8,7 +9,12 @@ class City extends Component{
     constructor(props, context) {
         super(props, context);
         this.state = {
-            NewPostShow: false
+            NewPostShow: false,
+            title: '',
+            body: '',
+            
+            userid: localStorage.userid,
+                       
     };
 }
     handleNewPostShow=()=>{
@@ -16,6 +22,30 @@ class City extends Component{
     }
     handleNewPostHide=()=> {
     this.setState({ NewPostShow: false });
+}
+handleTitle=(e)=>{
+    console.log(e.target.value);
+    this.setState({title: e.target.value})
+}
+handleBody=(e)=>{
+    this.setState({body: e.target.value})
+}
+    handleSubmit=(e)=>{
+    axios.post('http://localhost:3001/post/newpost',{
+        title: this.state.title,
+        body: this.state.body,
+        city: this.props.city.name,
+        date: new Date(),
+        userid: this.state.userid,
+        cityid: this.props.city.id
+    } )
+
+    .then( response => {
+       console.log(response);
+    })    
+    .catch(function(error){
+        console.log(error);
+    })
 }
     
     render(){
@@ -48,29 +78,33 @@ class City extends Component{
                     >
                     <Modal.Header closeButton>
                         <Modal.Title id="contained-modal-title">
-                    Sign Up
+                    New Post
                         </Modal.Title>
                     </Modal.Header>
                     <Modal.Body>
-                    <form>
+                    <Form>
                         <FormGroup>
                             <ControlLabel>Title</ControlLabel>
                             <FormControl
                                 type="text"
-                                placeholder="Enter title" />
+                                name="title"
+                                placeholder="Enter title"
+                                onChange={this.handleTitle}  />
                             <FormControl.Feedback />
                         </FormGroup>
                         <FormGroup controlId="formControlsTextarea">
                             <ControlLabel>Post Body</ControlLabel>
                             <FormControl 
                                 componentClass="textarea" 
-                                placeholder="Post body" />
+                                placeholder="Post body"
+                                onChange={this.handleBody}  />
                         </FormGroup>
-                    </form>
-                    </Modal.Body>
                         <Modal.Footer>
-                            <Button onClick={this.handleNewPostHide}>Close</Button>
+                            <Button onClick={this.handleSubmit}>Submit</Button>
                         </Modal.Footer>
+                    </Form>
+                    </Modal.Body>
+                        
                 </Modal>
             </React.Fragment>
         )

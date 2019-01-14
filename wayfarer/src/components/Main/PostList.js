@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Row, Media, Well,} from 'react-bootstrap'
-import Posts from '../../data.json'
+// import Posts from '../../data.json'
 
 
 
@@ -20,9 +20,6 @@ class PostList extends Component{
         //
         
     }
- 
-    
-   
 
     render(){
        
