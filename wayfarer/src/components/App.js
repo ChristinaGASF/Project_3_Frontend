@@ -10,11 +10,17 @@ import {Route, Switch} from 'react-router-dom'
 class App extends Component {
   constructor(props, context) {
     super(props, context);
+    if (localStorage.token){
+      this.state ={
+        isLoggedIn: true,
+        page:'home'
+      }
+    }else{
     this.state = {
         isLoggedIn: false,
         page: 'home'
-        
-    }         
+    }
+  }         
 };
   changeState=()=>{
     this.setState({isLoggedIn: true, page:"post"})

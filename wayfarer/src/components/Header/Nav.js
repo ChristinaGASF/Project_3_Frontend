@@ -4,27 +4,28 @@ import {Link } from 'react-router-dom'
 import SignUpForm from './SignUpForm'
 import LoginForm from './LoginForm';
 import { throws } from 'assert';
+import { readdirSync } from 'fs';
 
 var LoginFunc=(props)=>{
     if (props.isLoggedIn === false){
 
     
     return(
-        <>
+        <React.Fragment >
             <NavItem onClick={() => props.signup()} eventKey={1} href="#"> Sign Up </NavItem>
             <NavItem  onClick={() => props.login()} eventKey={2} href="#"> Log In </NavItem>
-        </>
+            </React.Fragment>
     )
 }else {
     return(
-        <>
+        <React.Fragment>
             <NavItem eventKey={1} href="#">
                 <Link to="/profile" >Profile</Link> 
             </NavItem>
             <NavItem onClick={()=> props.logOut()} eventKey={2} href="#">
                 Log Out
             </NavItem>
-        </>
+            </React.Fragment>
     )
 }
 }

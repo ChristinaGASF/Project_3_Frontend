@@ -1,21 +1,23 @@
 import React, { Component } from 'react'
-import { Row, Col, Image, FormGroup, FormControl, Form, ControlLabel, Modal, Button} from 'react-bootstrap'
+import { Row, Col, Image, FormGroup, HelpBlock, FormControl, Form, ControlLabel, Modal, Button} from 'react-bootstrap'
 import PostList from './PostList'
 import axios from 'axios'
-
 
 
 class City extends Component{
     constructor(props, context) {
         super(props, context);
+        
+        console.log(this.fileInput)
         this.state = {
             NewPostShow: false,
             title: '',
             body: '',
-            userid: localStorage.userid,
-
-    };
-}
+            userid: localStorage.userid
+        };
+   
+    }
+    fileInput = React.createRef();
     handleNewPostShow=()=>{
     this.setState({ NewPostShow: true });
     }
@@ -29,16 +31,18 @@ handleTitle=(e)=>{
 handleBody=(e)=>{
     this.setState({body: e.target.value})
 }
-    handleSubmit=(e)=>{
-    axios.post('http://localhost:3001/post/newpost',{
-        title: this.state.title,
-        body: this.state.body,
-        city: this.props.city.name,
-        date: new Date(),
-        userid: this.state.userid,
-        cityid: this.props.city.id,
-        token: localStorage.getItem('token')
-    } )
+handleSubmit=(e)=>{
+        console.log(this.fileInput);
+        var formData = new FormData();
+            formData.append("title", this.state.title);
+            formData.append("body", this.state.body);
+            formData.append("city", this.props.city.name);
+            formData.append("date",  new Date());
+            formData.append("userid", this.state.userid);
+            formData.append("cityid", this.props.city.id);
+            formData.append("token", localStorage.getItem('token'));
+            formData.append("img", this.fileInput.current.files[0])
+    axios.post('http://localhost:3001/post/newpost',formData )
 
     .then( response => {
        console.log(response);
@@ -99,6 +103,7 @@ handleBody=(e)=>{
                                 placeholder="Post body"
                                 onChange={this.handleBody}  />
                         </FormGroup>
+                        <input type="file" ref={this.fileInput}/>
                         <Modal.Footer>
                             <Button onClick={this.handleSubmit}>Submit</Button>
                         </Modal.Footer>
