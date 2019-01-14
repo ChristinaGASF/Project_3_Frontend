@@ -8,7 +8,6 @@ class Post extends Component{
         city: []
     }
     currentCity=(city)=>{
-        console.log(city);
         this.setState({city: city})
         
     }

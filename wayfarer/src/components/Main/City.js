@@ -37,7 +37,8 @@ handleBody=(e)=>{
         city: this.props.city.name,
         date: new Date(),
         userid: this.state.userid,
-        cityid: this.props.city.id
+        cityid: this.props.city.id,
+        token: localStorage.getItem('token')
     } )
 
     .then( response => {
@@ -68,7 +69,7 @@ handleBody=(e)=>{
                 </Row>
                 
                 
-                <PostList currentCity={this.props.city}/>
+                <PostList cityID={this.props.cityid} currentCity={this.props.city}/>
                 
                 <Modal
                     show={this.state.NewPostShow}

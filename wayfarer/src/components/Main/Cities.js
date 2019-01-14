@@ -22,9 +22,7 @@ class Cities extends Component{
     }
     
     handleCity=(city)=>{
-        console.log(city);
-        // var cityid = (e.target.className==='title')?e.target.parentNode.dataset.cityid:e.target.dataset.cityid;
-        console.log(city.name);
+        
         this.props.currentCity(city)
     }
     render(){

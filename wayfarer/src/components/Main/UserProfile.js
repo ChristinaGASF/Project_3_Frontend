@@ -3,7 +3,9 @@ import { Row, Media, Well,} from 'react-bootstrap'
 
 
 class UserProfile extends Component{
- 
+  componentDidMount(){
+    
+  }
     render() {
         return (
           <form onSubmit={this.handleSubmit}>

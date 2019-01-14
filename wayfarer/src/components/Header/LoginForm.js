@@ -27,20 +27,28 @@ class LoginForm extends Component{
         }
     }
     handleUsername=(e)=>{
-        console.log(e.target.value);
+        
         this.setState({username: e.target.value})
     }
     handlePassword=(e)=>{
         this.setState({password: e.target.value})
     }
     
+    handleChangeState=()=>{
+        this.setState({
+            isLoggedIn: true
+          })
+    }
     handleSubmit=(e)=>{
         axios.post('http://localhost:3001/user/login',{username: this.state.username, password: this.state.password} )
         .then( response => {
+            if (response.data.status === true){
+                console.log(response);
+            this.props.changeState()
+            this.props.signInHide()
             localStorage.token = response.data.token
-            this.setState({
-              isLoggedIn: true
-            })
+           
+        }
         })    
         .catch(function(error){
             console.log(error);

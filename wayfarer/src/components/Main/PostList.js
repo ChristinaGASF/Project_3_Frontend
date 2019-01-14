@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Row, Media, Well,} from 'react-bootstrap'
+import axios from 'axios';
 // import Posts from '../../data.json'
 
 
@@ -9,15 +10,21 @@ class PostList extends Component{
         super(props)
         this.state = {
             postList: [],
-            currentCity: []
+            currentCity: [],
         }
     }
     
     componentDidMount(){
         this.setState({currentCity : this.props.city})
-        // this.getPosts(Posts)
         
-        //
+        var cityID = this.props.cityId
+        axios.get(`http://localhost:3001/post/city/${cityID}}`)
+        .then(response => {
+            console.log(response);
+            this.setState({
+              postList: response
+            })
+          })
         
     }
 

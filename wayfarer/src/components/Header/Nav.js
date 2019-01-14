@@ -3,28 +3,56 @@ import {Navbar,Nav, NavItem,Modal, Button } from 'react-bootstrap'
 import {Link } from 'react-router-dom'
 import SignUpForm from './SignUpForm'
 import LoginForm from './LoginForm';
+import { throws } from 'assert';
 
+var LoginFunc=(props)=>{
+    if (props.isLoggedIn === false){
+
+    
+    return(
+        <>
+            <NavItem onClick={() => props.signup()} eventKey={1} href="#"> Sign Up </NavItem>
+            <NavItem  onClick={() => props.login()} eventKey={2} href="#"> Log In </NavItem>
+        </>
+    )
+}else {
+    return(
+        <>
+            <NavItem eventKey={1} href="#">
+                <Link to="/profile" >Profile</Link> 
+            </NavItem>
+            <NavItem onClick={()=> props.logOut()} eventKey={2} href="#">
+                Log Out
+            </NavItem>
+        </>
+    )
+}
+}
 class Header extends Component{
     constructor(props, context) {
         super(props, context);
-    
-        // this.handleHide = this.handleHide.bind(this);
-    
-        this.state = {
-            signUpShow: false,
-            signInShow: false,
-
-    };
+            this.state = {
+                signUpShow: false,
+                signInShow: false,
+            };
+    }
+    showModal=()=>{
+        this.setState({ signUpShow: true })
     }
 
-    handleSignUpHide=()=>{
-        
+    showLogin=()=>{
+        this.setState({signInShow:true})
+    }
+
+    handleSignUpHide=()=>{    
     this.setState({ signUpShow: false });
     }
+
     handleSignInHide=()=> {
-   
     this.setState({ signInShow: false });
     }
+
+
     render(){
         return(
             <React.Fragment >
@@ -35,12 +63,7 @@ class Header extends Component{
                         </Navbar.Brand>
                     </Navbar.Header>
                     <Nav pullRight>
-                        <NavItem onClick={() => this.setState({ signUpShow: true })} eventKey={1} href="#">
-                        Sign Up
-                        </NavItem>
-                        <NavItem  onClick={() => this.setState({ signInShow: true })} eventKey={2} href="#">
-                        Log In
-                        </NavItem>
+                        <LoginFunc logOut={this.props.logOut} signup={this.showModal} login={this.showLogin} isLoggedIn={this.props.isLoggedIn} />
                     </Nav>
                 </Navbar>
                 <Modal
@@ -55,7 +78,7 @@ class Header extends Component{
                         </Modal.Title>
                     </Modal.Header>
                     <Modal.Body>
-                        <SignUpForm />
+                        <SignUpForm  signUpHide={this.handleSignUpHide}   changeState={this.props.changeState} />
                     </Modal.Body>
                         <Modal.Footer >
                         </Modal.Footer>
@@ -73,7 +96,7 @@ class Header extends Component{
                         </Modal.Title>
                     </Modal.Header>
                     <Modal.Body>
-                        <LoginForm />
+                        <LoginForm signInHide={this.handleSignInHide} changeState={this.props.changeState} />
                     </Modal.Body>
                         <Modal.Footer>
                             <Button onClick={this.handleSignInHide}>Close</Button>

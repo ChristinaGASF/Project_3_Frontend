@@ -8,16 +8,39 @@ import {Redirect} from 'react-router-dom'
 import {Route, Switch} from 'react-router-dom'
 
 class App extends Component {
- 
+  constructor(props, context) {
+    super(props, context);
+    this.state = {
+        isLoggedIn: false,
+        page: 'home'
+        
+    }         
+};
+  changeState=()=>{
+    this.setState({isLoggedIn: true, page:"post"})
+  }
+
+  handleLogOut = () => {
+    this.setState({
+      isLoggedIn: false
+    })
+    localStorage.clear()
+  }
+
+  routeComp(){
+
+  }
   render() {
-    return (
+    var comp = (this.state.isLoggedIn === false)? Home : Post
+    var page = '/' + (this.state.page)
+    return(
+    
       <div className="App">
-        <Header />
+        <Header changeState={this.changeState} logOut={this.handleLogOut} isLoggedIn={this.state.isLoggedIn}/>
         <Switch > 
-        <Route path="/home" component={Home}/>
-        <Route path="/post" component={Post}/>
+        <Route path={page} component={comp}/>
         <Route path="/profile" component={Profile}/>
-        <Redirect from="/" to="home" />
+        <Redirect from="/" to={this.state.page} />
         </Switch>
       
       </div>
