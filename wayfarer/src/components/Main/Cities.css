@@ -2,7 +2,7 @@
     font-family: 'Quattrocento', serif;
 }
 
-h2 {
+h2.title {
     color: whitesmoke;
     font-family: 'Quattrocento', serif;
     font-weight: bold
@@ -24,6 +24,7 @@ h2 {
 
 button.newPost{
     margin: 180px 0 0 8px;
+    background-color: dimgrey
 }
 
 .well{
@@ -34,6 +35,3 @@ button.newPost{
    
 }
 
-nav{
-    background-color: navajowhite;
-}

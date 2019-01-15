@@ -13,7 +13,7 @@ class Profile extends Component{
                             <Panel>
                                 <Panel.Heading>
                                     <Panel.Title componentClass="h2">Profile</Panel.Title>
-                                   <UserProfile />
+                                   <UserProfile  />
                                    
                                 </Panel.Heading>
                                   

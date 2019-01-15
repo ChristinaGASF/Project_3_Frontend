@@ -1,4 +1,6 @@
-
+.App{
+  background-image: linear-gradient(to bottom, dimgrey 0, darkslategrey  100%) !important; 
+}
 
 .App-logo {
   animation: App-logo-spin infinite 20s linear;
@@ -28,4 +30,18 @@
     transform: rotate(360deg);
   }
 }
+.navbar-brand {
+  color: #1F2226 !important;
+}
 
+
+.navbar,
+.navbar-default {
+  
+    background-image: linear-gradient(to bottom, dimgrey 0, whitesmoke  100%) !important; /* override background image gradient w/ flat color */
+}
+
+a{
+  color: #1F2226 !important;
+  text-decoration: none !important;
+} 

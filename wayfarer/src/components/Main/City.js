@@ -11,7 +11,8 @@ class City extends Component{
             NewPostShow: false,
             title: '',
             body: '',
-            userid: localStorage.userid
+            userid: localStorage.userid,
+            cityPref: []
 
         };
    
@@ -31,7 +32,15 @@ handleBody=(e)=>{
     this.setState({body: e.target.value})
 }
 componentDidMount(){
-    
+        axios.post(`http://localhost:3001/user/profile`, {token: localStorage.getItem ("token")  })
+        .then(response => {
+            console.log(response);
+            var data = response.data.data
+            var cityPref = data.city 
+            
+            
+          })
+          
 }
 handleSubmit=(e)=>{
         var formData = new FormData();
@@ -61,7 +70,7 @@ handleSubmit=(e)=>{
                         <h2 className='cityTitle'>{this.props.city.name}</h2>
                         <h4>{this.props.city.country}</h4>
                         
-                <Button  className="newPost" block bsStyle="primary" bsSize="large" onClick={this.handleNewPostShow}>
+                <Button  className="newPost" block bsSize="large" onClick={this.handleNewPostShow}>
                 New Post
                 </Button >
                 

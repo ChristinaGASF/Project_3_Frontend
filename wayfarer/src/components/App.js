@@ -14,7 +14,7 @@ class App extends Component {
       this.state ={
         isLoggedIn: true,
         page:'home',
-        user:localStorage.token
+        
       }
     }else{
     this.state = {
@@ -39,7 +39,6 @@ class App extends Component {
 
   }
   render() {
-    console.log(this.state.user);
     var comp = (this.state.isLoggedIn === false)? Home : Post
     var page = '/' + (this.state.page)
     return(

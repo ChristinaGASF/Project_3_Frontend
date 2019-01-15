@@ -11,9 +11,14 @@ class SignUpForm extends Component{
         this.state = {
             username: '',
             password: '',
-            confirmPassword: ''
+            confirmPassword: '',
+            city: ''
 
     };
+    }
+    handlePrefCity=(e)=>{
+        
+        this.setState({city: e.target.value})
     }
     handleUsername=(e)=>{
         console.log(e.target.value);
@@ -26,7 +31,7 @@ class SignUpForm extends Component{
         this.setState({confirmPassword:e.target.value})
     }
     handleSubmit=(e)=>{
-        axios.post('http://localhost:3001/user/signup',{username: this.state.username, password: this.state.password, conpassword: this.state.confirmPassword} )
+        axios.post('http://localhost:3001/user/signup',{username: this.state.username, password: this.state.password, conpassword: this.state.confirmPassword, city: this.state.city} )
         .then(function (response){
             console.log(response);
         })
@@ -61,6 +66,14 @@ class SignUpForm extends Component{
     </Col>
     <Col sm={10}>
     <FormControl  onChange={this.handleConfirmPassword} value={this.state.confirmPassword} type="password" name="compassword" placeholder="Confirm password" />
+    </Col>
+</FormGroup>
+<FormGroup >
+    <Col componentClass={ControlLabel} sm={2}>
+    Favorite City
+    </Col>
+    <Col sm={10}>
+    <FormControl onChange={this.handlePrefCity} value={this.state.city} type="text" placeholder="e.g. San Francisco" />
     </Col>
 </FormGroup>
 <Button form="newUser" onClick={this.handleSubmit} >Submit</Button>
