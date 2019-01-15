@@ -1,32 +1,43 @@
 import React, { Component } from 'react'
 import { Form , FormGroup, Col, ControlLabel, FormControl,  Button} from 'react-bootstrap'
-
-// this.user. name
-// this.user. join date
+import UserPostList from './UserPostList';
+import axios from "axios"
 
 class UserProfile extends Component{
   constructor(props ) {
     super(props );
-
-/*
+    this.state = {fullname: "", date: "", city: "", img: ""}
+  }
     componentDidMount(){
-      this.setState({currentCity : this.props.city})
    
       var userID = this.props.userId
-      axios.get(`http://localhost:3001/post/city/${userID}}`)
+      axios.post(`http://localhost:3001/user/profile`, {token: localStorage.getItem ("token")  })
       .then(response => {
-          console.log(response);
-          this.setState({
-            userID: response
-          })
+          
+          var data = response.data.data
+          console.log (data)
+         this.setState({ 
+           fullname: (data.fullname === undefined)?"Christina":data.fullname, 
+           date: (data.date === undefined)?"":new Date (data.date).toLocaleDateString("en-US"),
+           city: (data.city === undefined)?"San Francisco":data.city,
+           img: (data.profilePic === undefined)?"":data.profilePic,
+         })
         })
       
-  }
-*/
+  
+}
+
+  /*
+this.users.fullname
+this.users.joinDate
+this.users.city
+
+
     this.state = {value: ''};
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleUpdate.bind(this);
   }
+  */
 
   handleChange(event) {
     this.setState({value: event.target.value});
@@ -37,6 +48,7 @@ class UserProfile extends Component{
   }
 
     render(){
+      console.log (this.state)
         return (
 
         <Form horizontal>
@@ -46,18 +58,18 @@ class UserProfile extends Component{
         </FormGroup>
 
         <FormGroup controlId="formHorizontalName">
-          <Col componentClass={ControlLabel} sm={6}> User Name</Col>
-          <Col sm={6}>{} </Col>
+          <Col componentClass={ControlLabel} sm={6}> Name </Col>
+          <Col sm={6}>{ this.state.fullname } </Col>
         </FormGroup>
 
         <FormGroup controlId="formHorizontalName">
           <Col componentClass={ControlLabel} sm={6}> Join Date</Col>
-          <Col sm={6}>{} </Col>
+          <Col sm={6}>{ this.state.date } </Col>
         </FormGroup>
 
         <FormGroup controlId="formHorizontalName">
-          <Col componentClass={ControlLabel} sm={6}> Current City</Col>
-          <Col sm={6}>{} </Col>
+          <Col componentClass={ControlLabel} sm={6}> City </Col>
+          <Col sm={6}>{ this.state.city } </Col>
         </FormGroup>
 
 {/*
@@ -67,9 +79,9 @@ class UserProfile extends Component{
             <FormControl type="text" placeholder="Current City" value={this.state.value} onChange={this.handleChange} />
             </Col>
         </FormGroup>
-
-         <Button form="updateUser" onClick={this.handleUpdate} >Update</Button>
 */}
+         <Button form="updateUser" onClick={this.handleUpdate} >Update</Button>
+
 
       </Form>
        
