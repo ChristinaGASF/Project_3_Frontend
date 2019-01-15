@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Row, Col, Image, FormGroup, HelpBlock, FormControl, Form, ControlLabel, Modal, Button} from 'react-bootstrap'
+import { Row, Col, Image, FormGroup, FormControl, Form, ControlLabel, Modal, Button} from 'react-bootstrap'
 import PostList from './PostList'
 import axios from 'axios'
 
@@ -7,13 +7,12 @@ import axios from 'axios'
 class City extends Component{
     constructor(props, context) {
         super(props, context);
-        
-        console.log(this.fileInput)
         this.state = {
             NewPostShow: false,
             title: '',
             body: '',
             userid: localStorage.userid
+
         };
    
     }
@@ -31,8 +30,10 @@ handleTitle=(e)=>{
 handleBody=(e)=>{
     this.setState({body: e.target.value})
 }
+componentDidMount(){
+    
+}
 handleSubmit=(e)=>{
-        console.log(this.fileInput);
         var formData = new FormData();
             formData.append("title", this.state.title);
             formData.append("body", this.state.body);
@@ -45,7 +46,7 @@ handleSubmit=(e)=>{
     axios.post('http://localhost:3001/post/newpost',formData )
 
     .then( response => {
-       console.log(response);
+        console.log(response);
     })    
     .catch(function(error){
         console.log(error);
@@ -63,7 +64,7 @@ handleSubmit=(e)=>{
                 <Button  className="newPost" block bsStyle="primary" bsSize="large" onClick={this.handleNewPostShow}>
                 New Post
                 </Button >
-               
+                
                         
                     </Col>
                     <Col xs={12} md={8}>

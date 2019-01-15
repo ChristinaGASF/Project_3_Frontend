@@ -6,7 +6,6 @@ import UserPostList from '../components/Main/UserPostList'
 class Profile extends Component{
     render(){
         return(
-
             <React.Fragment>
                 <Grid>
                     <Row className="show-grid">
@@ -14,10 +13,7 @@ class Profile extends Component{
                             <Panel>
                                 <Panel.Heading>
                                     <Panel.Title componentClass="h2">Profile</Panel.Title>
-  
-                                   { 
-                                    <UserProfile />
-                                   }
+                                   <UserProfile />
                                    
                                 </Panel.Heading>
                                   

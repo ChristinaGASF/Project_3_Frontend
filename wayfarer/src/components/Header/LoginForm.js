@@ -47,6 +47,7 @@ class LoginForm extends Component{
             this.props.changeState()
             this.props.signInHide()
             localStorage.token = response.data.token
+            
            
         }
         })    

@@ -16,6 +16,7 @@ class Post extends Component{
         this.setState({post:post})
     }
     render(){
+        console.log();
         return(
             <React.Fragment>
                 <Grid>

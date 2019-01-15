@@ -1,7 +1,17 @@
-
+*{
+    font-family: 'Quattrocento', serif;
+}
 
 h2 {
     color: whitesmoke;
+    font-family: 'Quattrocento', serif;
+    font-weight: bold
+}
+.nav{
+    font-size: 1.5em;
+}
+.navbar-brand{
+    font-size: 1.8em;
 }
 
 .cityTitle{
@@ -22,4 +32,8 @@ button.newPost{
     text-align: center;
     z-index: 100
    
+}
+
+nav{
+    background-color: navajowhite;
 }

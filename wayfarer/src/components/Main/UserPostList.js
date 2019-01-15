@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { Row, Media, Well,} from 'react-bootstrap'
-import axios from 'axios';
-//import Show from '../components/Main/Show'
+
 
 class UserPostList extends Component{
     constructor (props) {
@@ -10,21 +9,6 @@ class UserPostList extends Component{
             userPostList: [],
         }
     }
-/*
-    componentDidMount(){
-        this.setState({})
-        
-        var userID = this.props.userId
-        axios.get(`http://localhost:3001/${userID}}`)
-        .then(response => {
-            console.log(response);
-            this.setState({
-              postList: response
-            })
-          })
-        
-    }
-*/
     render(){
         return(
             <React.Fragment>

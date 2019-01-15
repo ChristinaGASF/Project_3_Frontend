@@ -13,7 +13,8 @@ class App extends Component {
     if (localStorage.token){
       this.state ={
         isLoggedIn: true,
-        page:'home'
+        page:'home',
+        user:localStorage.token
       }
     }else{
     this.state = {
@@ -32,11 +33,13 @@ class App extends Component {
     })
     localStorage.clear()
   }
+  
 
   routeComp(){
 
   }
   render() {
+    console.log(this.state.user);
     var comp = (this.state.isLoggedIn === false)? Home : Post
     var page = '/' + (this.state.page)
     return(

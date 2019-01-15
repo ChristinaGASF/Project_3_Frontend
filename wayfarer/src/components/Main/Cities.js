@@ -23,7 +23,7 @@ class Cities extends Component{
     }
     
     handleCity=(city)=>{
-        console.log(city);
+        
         this.props.currentCity(city)
         
         axios.get(`http://localhost:3001/post/city/${city.id}`)

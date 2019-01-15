@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { Row, Media, Well,} from 'react-bootstrap'
-import axios from 'axios';
-// import Posts from '../../data.json'
+
 
 
 
@@ -16,7 +15,7 @@ class PostList extends Component{
     
     componentDidMount(){
         this.setState({currentCity : this.props.currentCity})
-        console.log(this.props.currentCity);
+     
         
         
         
@@ -26,7 +25,7 @@ class PostList extends Component{
         
         
         
-        console.log(this.props.post)
+        
     var posts = this.props.post.map((post,index)=>{
         var imgLoc = `http://localhost:3001/images/upload/${post.image}`
         return <Row>

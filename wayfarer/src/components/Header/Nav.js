@@ -1,10 +1,9 @@
 import React, { Component } from 'react'
-import {Navbar,Nav, NavItem,Modal, Button } from 'react-bootstrap'
+import {Navbar, Nav, NavItem, Modal, Button } from 'react-bootstrap'
 import {Link } from 'react-router-dom'
 import SignUpForm from './SignUpForm'
 import LoginForm from './LoginForm';
-import { throws } from 'assert';
-import { readdirSync } from 'fs';
+
 
 var LoginFunc=(props)=>{
     if (props.isLoggedIn === false){
@@ -14,7 +13,7 @@ var LoginFunc=(props)=>{
         <React.Fragment >
             <NavItem onClick={() => props.signup()} eventKey={1} href="#"> Sign Up </NavItem>
             <NavItem  onClick={() => props.login()} eventKey={2} href="#"> Log In </NavItem>
-            </React.Fragment>
+        </React.Fragment>
     )
 }else {
     return(
@@ -25,7 +24,7 @@ var LoginFunc=(props)=>{
             <NavItem onClick={()=> props.logOut()} eventKey={2} href="#">
                 Log Out
             </NavItem>
-            </React.Fragment>
+        </React.Fragment>
     )
 }
 }

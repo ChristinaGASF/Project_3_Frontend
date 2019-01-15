@@ -1,28 +1,12 @@
 import React, { Component } from 'react'
-import { Form , FormGroup, Col, ControlLabel, FormControl,  Button} from 'react-bootstrap'
+import { Form , FormGroup, Col, ControlLabel} from 'react-bootstrap'
 
-// this.user. name
-// this.user. join date
 
 class UserProfile extends Component{
   constructor(props ) {
     super(props );
 
-/*
-    componentDidMount(){
-      this.setState({currentCity : this.props.city})
-   
-      var userID = this.props.userId
-      axios.get(`http://localhost:3001/post/city/${userID}}`)
-      .then(response => {
-          console.log(response);
-          this.setState({
-            userID: response
-          })
-        })
-      
-  }
-*/
+
     this.state = {value: ''};
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleUpdate.bind(this);
