@@ -19,7 +19,24 @@ class Cities extends Component{
     
     componentDidMount(){
         this.setState({ cities: cities});
-        
+        // this.handleCity()
+        axios.put('http://localhost:3001/user/edit/profile',{
+            fullname: this.state.fullname, 
+            city: this.state.city,
+            token: localStorage.getItem("token")
+        } )
+        .then( response => {
+           cities.forEach(element => {
+                
+                if(element.id.toString() === response.data.data.city){
+                    this.handleCity(element)
+                }
+                    
+            });
+            //console.log(current)
+           // 
+          console.log(response.data);
+       })    
     }
     
     handleCity=(city)=>{
