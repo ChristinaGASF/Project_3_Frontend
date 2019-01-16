@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Form, FormGroup, Col, FormControl, ControlLabel, Button } from 'react-bootstrap'
+import { Form, FormGroup, Col, FormControl, ControlLabel, Button,Alert } from 'react-bootstrap'
 import axios from 'axios'
 class LoginForm extends Component{
     constructor(props, context) {
@@ -8,8 +8,9 @@ class LoginForm extends Component{
         this.state = {
             username: '',
             password: '',
-            isLoggedIn: false
-
+            isLoggedIn: false,
+            serverMessage:'',
+            messageDisplay:"none"
     };
 }
     componentDidMount () {
@@ -39,15 +40,22 @@ class LoginForm extends Component{
         axios.post('http://localhost:3001/user/login',{username: this.state.username, password: this.state.password} )
         .then( response => {
             if (response.data.status === true){
-                console.log(response);
-            this.props.changeState()
-            this.props.signInHide()
-            localStorage.token = response.data.token
-              
-        }
+                this.props.changeState()
+                this.props.signInHide()
+                localStorage.token = response.data.token
+            }
+            else{
+                this.setState({
+                    serverMessage:response.data.message,
+                    messageDisplay:"block"
+                })
+            }
         })    
         .catch(function(error){
-            console.log(error);
+            this.setState({
+                serverMessage:"Server error try later",
+                messageDisplay:"block"
+            })
         })
     }
     handleLogOut = () => {
@@ -62,6 +70,9 @@ class LoginForm extends Component{
         return(
             <React.Fragment >
                 <Form horizontal id="login">
+                <Alert style={{display:this.state.messageDisplay}} bsStyle="warning">
+                   {this.state.serverMessage}
+                </Alert>
                 <FormGroup controlId="formHorizontalUsername">
                     <Col componentClass={ControlLabel} sm={2}>
                     Username
@@ -70,7 +81,6 @@ class LoginForm extends Component{
                     <FormControl onChange={this.handleUsername} value={this.state.username} type="username" placeholder="Username" />
                     </Col>
                 </FormGroup>
-
                 <FormGroup controlId="formHorizontalPassword">
                     <Col componentClass={ControlLabel} sm={2}>
                     Password
@@ -79,13 +89,10 @@ class LoginForm extends Component{
                     <FormControl onChange={this.handlePassword} value={this.state.password} type="password" name="password" placeholder="Password" />
                     </Col>
                 </FormGroup>
-
             <Button form="login" onClick={this.handleSubmit} >Submit</Button>
-
         </Form>
             </React.Fragment>
         )
     }
 }
-
 export default LoginForm

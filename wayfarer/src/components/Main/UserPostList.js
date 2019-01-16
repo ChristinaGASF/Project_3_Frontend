@@ -9,9 +9,11 @@ class UserPostList extends Component{
         this.state = {
             userPostList: {data:[]},
             editPostShow: false,
+            postShow: false,
             postBody: [],
             postTitle: [],
             postId: [],
+            postImg: []
             
         }
     }
@@ -33,6 +35,10 @@ class UserPostList extends Component{
     handleEditPostHide=()=>{
         this.setState({ editPostShow: false });
     }
+    handlePostHide=()=>{
+        this.setState({ postShow: false });
+    }
+
     handleEditSubmit=(e)=>{
         var postID = this.state.postId
 
@@ -51,8 +57,34 @@ class UserPostList extends Component{
         
 
     }
+    handlePostShow=(e)=>{
+        var postID = e.target.dataset.id
+        console.log(postID);
+        this.setState({
+            postShow: true, 
+            postId: postID
+        })
+        
+        axios.get(`http://localhost:3001/post/show/${postID}`).then((response)=>{
+            var post = response.data.data;
+            var imgLoc = post[0].pic
+            console.log(imgLoc);
+            var imgUrl = `http://localhost:3001/images/upload/${imgLoc}`
+            console.log(post);
+            this.setState({
+                postBody: post[0].body,
+                postTitle: post[0].title,
+                postImg: imgUrl
+            })
+        }).catch(err=>{
+            console.log(err.response)
+        })
+
+
+    }
     handleDelete=(e)=>{
         var postID = e.target.dataset.id
+        console.log(postID);
         axios.delete(`http://localhost:3001/post/${postID}`).then(()=>{
             var postListIndex = this.state.userPostList.data.findIndex(post=>{
                 return(post._id === postID)
@@ -68,11 +100,11 @@ class UserPostList extends Component{
 
     
     render(){
-        console.log(this.state.userPostList);
+        
         var posts = this.state.userPostList.data.map((post,index)=>{
             var imgLoc = `http://localhost:3001/images/upload/${post.pic}`
                 return( <Row>
-                <Well className='postItem'>
+                <Well   className='postItem'>
                 <Media>
                     <Media.Left>
                         <img width={64} height={64} src={imgLoc }alt="thumbnail" />
@@ -84,6 +116,7 @@ class UserPostList extends Component{
                         </p>
                         <Button form="updateUser" data-id={post._id}  onClick={this.handleEditShow} >Edit</Button>
                         <Button form="updateUser" onClick={this.handleDelete}  data-id={post._id} >Delete</Button>
+                        <Button  data-id={post._id} onClick={this.handlePostShow} >More Info</Button>
                     </Media.Body>
                 </Media>
             </Well>
@@ -92,7 +125,23 @@ class UserPostList extends Component{
         });
             return(
                 <React.Fragment>
-                    
+                <Modal
+                    show={this.state.postShow}
+                    onHide={this.handlePostHide}
+                    container={this}
+                    aria-labelledby="contained-modal-title"
+                    >
+                    <Modal.Header closeButton>
+                        <Modal.Title id="contained-modal-title">
+                            <h2>{this.state.postTitle}</h2>
+                            <img width={64} height={64} src={this.state.postImg}alt="thumbnail" />
+                        </Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>
+                        <p>{this.state.postBody}</p>
+                    </Modal.Body>
+                        
+                </Modal>
                 <Modal
                     show={this.state.editPostShow}
                     onHide={this.handleEditPostHide}
