@@ -5,9 +5,7 @@ import axios from 'axios'
 class SignUpForm extends Component{
     constructor(props, context) {
         super(props, context);
-    
-        // this.handleHide = this.handleHide.bind(this);
-    
+
         this.state = {
             username: '',
             password: '',
@@ -15,9 +13,8 @@ class SignUpForm extends Component{
             city: ''
 
     };
-    }
-    handlePrefCity=(e)=>{
-        
+}
+    handlePrefCity=(e)=>{       
         this.setState({city: e.target.value})
     }
     handleUsername=(e)=>{
@@ -43,12 +40,12 @@ class SignUpForm extends Component{
         return(
             <React.Fragment >
 <Form horizontal id="newUser">
-<FormGroup controlId="formHorizontalEmail">
+<FormGroup controlId="formHorizontalUsername">
     <Col componentClass={ControlLabel} sm={2}>
     Username
     </Col>
     <Col sm={10}>
-    <FormControl onChange={this.handleUsername} value={this.state.username} type="email" placeholder="Email" />
+    <FormControl onChange={this.handleUsername} value={this.state.username} type="username" placeholder="Username" />
     </Col>
 </FormGroup>
 
@@ -83,6 +80,5 @@ class SignUpForm extends Component{
         )
     }
 }
-
 
 export default SignUpForm
