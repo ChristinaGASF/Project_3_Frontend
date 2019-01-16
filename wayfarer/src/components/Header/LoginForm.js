@@ -1,20 +1,17 @@
 import React, { Component } from 'react'
 import { Form, FormGroup, Col, FormControl, ControlLabel, Button } from 'react-bootstrap'
 import axios from 'axios'
-
 class LoginForm extends Component{
     constructor(props, context) {
         super(props, context);
-    
-        // this.handleHide = this.handleHide.bind(this);
-    
+ 
         this.state = {
             username: '',
             password: '',
             isLoggedIn: false
 
     };
-    }
+}
     componentDidMount () {
         if (localStorage.token) {
             this.setState({
@@ -27,7 +24,6 @@ class LoginForm extends Component{
         }
     }
     handleUsername=(e)=>{
-        
         this.setState({username: e.target.value})
     }
     handlePassword=(e)=>{
@@ -47,8 +43,7 @@ class LoginForm extends Component{
             this.props.changeState()
             this.props.signInHide()
             localStorage.token = response.data.token
-            
-           
+              
         }
         })    
         .catch(function(error){
@@ -67,12 +62,12 @@ class LoginForm extends Component{
         return(
             <React.Fragment >
                 <Form horizontal id="login">
-                <FormGroup controlId="formHorizontalEmail">
+                <FormGroup controlId="formHorizontalUsername">
                     <Col componentClass={ControlLabel} sm={2}>
                     Username
                     </Col>
                     <Col sm={10}>
-                    <FormControl onChange={this.handleUsername} value={this.state.username} type="email" placeholder="Email" />
+                    <FormControl onChange={this.handleUsername} value={this.state.username} type="username" placeholder="Username" />
                     </Col>
                 </FormGroup>
 
@@ -92,6 +87,5 @@ class LoginForm extends Component{
         )
     }
 }
-
 
 export default LoginForm
