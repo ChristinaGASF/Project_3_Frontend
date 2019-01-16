@@ -8,13 +8,15 @@ class Post extends Component{
         city: [],
         post: []
     }
+
     currentCity=(city)=>{
         this.setState({city: city})
-        
     }
+
     populatePosts=(post)=>{
         this.setState({post:post})
     }
+
     render(){
         console.log();
         return(
@@ -22,7 +24,6 @@ class Post extends Component{
                 <Grid>
                     <Row id="post" className="show-grid">
                         <Col xs={12} md={4}>
-                            
                             <Panel>
                                 <Panel.Heading>
                                     <Panel.Title componentClass="h2">Cities</Panel.Title>
@@ -31,21 +32,17 @@ class Post extends Component{
                             </Panel>
                         </Col>
                         <Col xs={12} md={8}>
-                                <Panel>
-                                    <Panel.Body>
-                                        <City post={this.state.post} city={this.state.city}/>
-                                    </Panel.Body>
-                                </Panel>
+                            <Panel>
+                                <Panel.Body>
+                                    <City post={this.state.post} city={this.state.city}/>
+                                </Panel.Body>
+                            </Panel>
                         </Col>
                     </Row>
                 </Grid>
-
-
-
             </React.Fragment>
         )
     }
 }
-
 
 export default Post

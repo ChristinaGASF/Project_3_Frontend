@@ -6,24 +6,22 @@ import LoginForm from './LoginForm';
 
 var LoginFunc=(props)=>{
     if (props.isLoggedIn === false){
-   
-    return(
-        <React.Fragment >
-            <NavItem onClick={() => props.signup()} eventKey={1} href="#"> Sign Up </NavItem>
-            <NavItem  onClick={() => props.login()} eventKey={2} href="#"> Log In </NavItem>
-        </React.Fragment>
-    )
-}
-else {
-    return(
-        <React.Fragment>
-            <NavItem eventKey={1} href="#">
-                <Link to="/profile" >Profile</Link> 
-            </NavItem>
-            <NavItem onClick={()=> props.logOut()} eventKey={2} href="#">
-                Log Out
-            </NavItem>
-        </React.Fragment>
+        return(
+            <React.Fragment >
+                <NavItem onClick={() => props.signup()} eventKey={1} href="#"> Sign Up </NavItem>
+                <NavItem  onClick={() => props.login()} eventKey={2} href="#"> Log In </NavItem>
+            </React.Fragment>
+        )
+    }else{
+        return(
+            <React.Fragment>
+                <NavItem eventKey={1} href="#">
+                    <Link to="/profile" >Profile</Link> 
+                </NavItem>
+                <NavItem onClick={()=> props.logOut()} eventKey={2} href="#">
+                    Log Out
+                </NavItem>
+            </React.Fragment>
         )
     }
 }
@@ -35,6 +33,7 @@ class Header extends Component{
                 signInShow: false,
             };
     }
+
     showModal=()=>{
         this.setState({ signUpShow: true })
     }
@@ -55,7 +54,6 @@ class Header extends Component{
     render(){
         return(
             <React.Fragment >
-                
                 <Navbar>
                     <Navbar.Header>
                         <Navbar.Brand>
@@ -66,7 +64,6 @@ class Header extends Component{
                         <LoginFunc logOut={this.props.logOut} signup={this.showModal} login={this.showLogin} isLoggedIn={this.props.isLoggedIn} />
                     </Nav>
                 </Navbar>
-
                 <Modal
                     show={this.state.signUpShow}
                     onHide={this.handleSignUpHide}
@@ -82,7 +79,6 @@ class Header extends Component{
                         <SignUpForm  signUpHide={this.handleSignUpHide}   changeState={this.props.changeState} />
                     </Modal.Body>
                 </Modal>
-
                 <Modal
                     show={this.state.signInShow}
                     onHide={this.handleSignInHide}
@@ -98,7 +94,6 @@ class Header extends Component{
                         <LoginForm signInHide={this.handleSignInHide} changeState={this.props.changeState} />
                     </Modal.Body>
                 </Modal>
-
             </React.Fragment>
         )
     }

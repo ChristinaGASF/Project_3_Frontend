@@ -13,44 +13,46 @@ class SignUpForm extends Component {
             messageDisplay:"none"
         };
     }
-   
+
     handleUsername = (e) => {
         console.log(e.target.value);
         this.setState({ username: e.target.value })
     }
+
     handlePassword = (e) => {
         this.setState({ password: e.target.value })
     }
+
     handleConfirmPassword = (e) => {
         this.setState({ confirmPassword: e.target.value })
     }
+
     handleSubmit = (e) => {
         var ths = this;
         axios.post('http://localhost:3001/user/signup', { username: this.state.username, password: this.state.password, conpassword: this.state.confirmPassword, city: this.state.city })
-            .then(function (response) {
-                console.log(response)
-                if(response.data.status==true){
-                    ths.setState({
-                        serverMessage:response.data.message,
-                        messageDisplay:"block"
-                    })
-                    setTimeout(function(){
-                        ths.props.signUpHide()
-                    },2000 )
-                }
-                else{
-                    ths.setState({
-
-                        serverMessage:response.data.message,
-                        messageDisplay:"block"
-                    })
-                }
-               
-            })
-            .catch(function (error) {
-                
-            })
+        .then(function (response) {
+            console.log(response)
+            if(response.data.status==true){
+                ths.setState({
+                    serverMessage:response.data.message,
+                    messageDisplay:"block"
+                })
+                setTimeout(function(){
+                    ths.props.signUpHide()
+                }, 2000 )
+            }
+            else{
+                ths.setState({
+                    serverMessage:response.data.message,
+                    messageDisplay:"block"
+                })
+            }
+        })
+        .catch(function (error) {
+            console.log(error);
+        })
     }
+
     render() {
         return (
             <React.Fragment >
@@ -82,7 +84,6 @@ class SignUpForm extends Component {
                             <FormControl onChange={this.handleConfirmPassword} value={this.state.confirmPassword} type="password" name="compassword" placeholder="Confirm password" />
                         </Col>
                     </FormGroup>
-                   
                     <Button form="newUser" onClick={this.handleSubmit} >Submit</Button>
                 </Form>
             </React.Fragment>

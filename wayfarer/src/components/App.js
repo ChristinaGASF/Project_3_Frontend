@@ -9,23 +9,19 @@ import {Route, Switch} from 'react-router-dom'
 var RouteComp = (props)=>{
   if(props.isLoggedIn==true){
     return(
-      
       <Switch>
-      <Route path={props.page} component={Post}/>
-      <Route path="/profile" component={Profile}/>
-      <Redirect from="/" to={props.page} />
+        <Route path={props.page} component={Post}/>
+        <Route path="/profile" component={Profile}/>
+        <Redirect from="/" to={props.page} />
       </Switch>
-     
     );
   }else{
     return(
-      
       <Switch>
-      <Route path={props.page} component={Home}/>
-      <Redirect from="/" to={props.page} />
+        <Route path={props.page} component={Home}/>
+        <Redirect from="/" to={props.page} />
       </Switch>
-     
-      )
+    )
   }
 }
 class App extends Component {
@@ -35,7 +31,6 @@ class App extends Component {
       this.state ={
         isLoggedIn: true,
         page:'home',
-        
       }
     }else{
     this.state = {
@@ -47,6 +42,7 @@ class App extends Component {
   changeState=()=>{
     this.setState({isLoggedIn: true, page:"post"})
   }
+
   handleLogOut = () => {
     this.setState({
       isLoggedIn: false
@@ -59,16 +55,13 @@ class App extends Component {
     var comp = (this.state.isLoggedIn === false)? Home : Post
     var page = '/' + (this.state.page)
     return(
-    
       <div className="App">
         <Header changeState={this.changeState} logOut={this.handleLogOut} isLoggedIn={this.state.isLoggedIn}/>
-        
         <RouteComp isLoggedIn={this.state.isLoggedIn} page ={page}  />
-        
-      
       </div>
     );
   }
 }
+
 export default App;
 

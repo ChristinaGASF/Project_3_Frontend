@@ -1,9 +1,11 @@
 import React, { Component } from 'react'
-import {Col, Row, Grid, Panel } from 'react-bootstrap'
+import {Col, Row, Grid, Panel,Alert } from 'react-bootstrap'
 import UserProfile from '../components/Main/UserProfile'
 import UserPostList from '../components/Main/UserPostList'
 
 class Profile extends Component{
+    
+
     render(){
         return(
             <React.Fragment>
@@ -13,31 +15,24 @@ class Profile extends Component{
                             <Panel>
                                 <Panel.Heading>
                                     <Panel.Title componentClass="h2">Profile</Panel.Title>
-                                   <UserProfile  />
-                                   
+                                    <UserProfile  />
+                                    
                                 </Panel.Heading>
-                                  
                             </Panel>
-
                         </Col>
                         <Col xs={12} md={8}>
                             <Panel>
                                 <Panel.Body>
                                     <Panel.Title componentClass="h2">My Post Contributions</Panel.Title>
-                                        <UserPostList />
-                                    </Panel.Body>
-                                </Panel>
+                                    <UserPostList />
+                                </Panel.Body>
+                            </Panel>
                         </Col>
                     </Row>
                 </Grid>
-
-
-
             </React.Fragment>
         )
     }
 }
-
-
 
 export default Profile
