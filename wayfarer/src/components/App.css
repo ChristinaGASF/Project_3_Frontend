@@ -20,7 +20,21 @@ body {
 .carousel-inner img {
   margin: auto;
 }
+.carousel-control{
+  width: 2%;
+}
+.carousel-caption {
+  color: #ffffff;
+  text-shadow: 2px 2px #000000;
+}
 
+.carousel-control.right  {
+  background: none  #FFFFFF;
+}
+.carousel-control.left {
+  background: none  #FFFFFF;
+
+}
 a{
   color: #1F2226 !important;
   text-decoration: none !important;
