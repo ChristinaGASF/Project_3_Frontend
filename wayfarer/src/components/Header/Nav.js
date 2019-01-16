@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import {Navbar, Nav, NavItem, Modal, Button } from 'react-bootstrap'
+import {Navbar, Nav, NavItem, Modal, Button, Glyphicon } from 'react-bootstrap'
 import {Link } from 'react-router-dom'
 import SignUpForm from './SignUpForm'
 import LoginForm from './LoginForm';
@@ -50,15 +50,15 @@ class Header extends Component{
     this.setState({ signInShow: false });
     }
 
-
     render(){
         return(
             <React.Fragment >
                 <Navbar>
                     <Navbar.Header>
                         <Navbar.Brand>
-                        <Link to="/">Classic Traveler</Link>
-                        </Navbar.Brand>
+            
+                    <Link to="/"><Glyphicon glyph="globe" /> Classic Traveler </Link>
+                    </Navbar.Brand>
                     </Navbar.Header>
                     <Nav pullRight>
                         <LoginFunc logOut={this.props.logOut} signup={this.showModal} login={this.showLogin} isLoggedIn={this.props.isLoggedIn} />
