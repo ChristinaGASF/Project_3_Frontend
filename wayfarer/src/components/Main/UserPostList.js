@@ -34,7 +34,7 @@ class UserPostList extends Component{
         this.setState({ editPostShow: false });
     }
     handleEditSubmit=(e)=>{
-        var postID = e.target.dataset.id
+        var postID = this.state.postId
 
         axios.post(`http://localhost:3001/post/edit/${postID}`, {title: e.target.parentNode.parentNode.firstChild.firstChild.nextSibling.value ,body: e.target.parentNode.parentNode.firstChild.nextSibling.firstChild.nextSibling.value}).then((data)=>{
             console.log(data);
@@ -56,8 +56,6 @@ class UserPostList extends Component{
         axios.delete(`http://localhost:3001/post/${postID}`).then(()=>{
             var postListIndex = this.state.userPostList.data.findIndex(post=>{
                 return(post._id === postID)
-                
-                
             })
             console.log(postListIndex);
             this.state.userPostList.data.splice(postListIndex, 1) 
