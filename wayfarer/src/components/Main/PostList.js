@@ -30,7 +30,7 @@ class PostList extends Component{
             <Well className='postItem'>
             <Media>
                 <Media.Left>
-                    <img width={64} height={64} src={imgLoc }alt="thumbnail" />
+                    <img width={125} height={125} src={imgLoc }alt="thumbnail" />
                 </Media.Left>
                 <Media.Body>
                 <Media.Heading>{post.title}</Media.Heading>
