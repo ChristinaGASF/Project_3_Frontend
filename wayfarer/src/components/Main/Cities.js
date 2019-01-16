@@ -3,11 +3,6 @@ import {Well, Panel } from 'react-bootstrap'
 import './Cities.css'
 import cities from '../../cities.json'
 import axios from 'axios';
-
-
-
-    
-
 class Cities extends Component{
     constructor (props) {
         super(props)
@@ -16,26 +11,31 @@ class Cities extends Component{
             currentCity: []
         }
     }
-    
+   
     componentDidMount(){
         this.setState({ cities: cities});
-        // this.handleCity()
-        axios.put('http://localhost:3001/user/edit/profile',{
+
+        axios.post('http://localhost:3001/user/profile',{
             fullname: this.state.fullname, 
             city: this.state.city,
             token: localStorage.getItem("token")
         } )
         .then( response => {
+            var defaultCity = true;
            cities.forEach(element => {
-                
-                if(element.id.toString() === response.data.data.city){
-                    this.handleCity(element)
+                if(response.data.status === true){
+                    if(element.id.toString() === response.data.data.city){
+                        defaultCity = false
+    
+                        this.handleCity(element)
+                    }
                 }
+                
                     
             });
-            //console.log(current)
-           // 
-          console.log(response.data);
+            if(defaultCity === true){
+                this.handleCity(cities[0])
+            }
        })    
     }
     
@@ -48,8 +48,7 @@ class Cities extends Component{
             if(response.data.error === undefined){
                 this.props.populate(response.data)
             }
-            
-            
+                       
         })
     }
     render(){

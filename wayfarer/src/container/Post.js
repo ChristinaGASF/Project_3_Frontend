@@ -20,7 +20,7 @@ class Post extends Component{
         return(
             <React.Fragment>
                 <Grid>
-                    <Row className="show-grid">
+                    <Row id="post" className="show-grid">
                         <Col xs={12} md={4}>
                             
                             <Panel>

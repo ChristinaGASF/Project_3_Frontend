@@ -83,19 +83,22 @@ class UserPostList extends Component{
 
     }
     handleDelete=(e)=>{
-        var postID = e.target.dataset.id
-        console.log(postID);
-        axios.delete(`http://localhost:3001/post/${postID}`).then(()=>{
-            var postListIndex = this.state.userPostList.data.findIndex(post=>{
-                return(post._id === postID)
+        var postID = e.target.dataset.id 
+        if (window.confirm("Are you sure you want to delete?")){
+
+            console.log(postID);
+            axios.delete(`http://localhost:3001/post/${postID}`).then(()=>{
+                var postListIndex = this.state.userPostList.data.findIndex(post=>{
+                    return(post._id === postID)
+                })
+                console.log(postListIndex);
+                this.state.userPostList.data.splice(postListIndex, 1) 
+                this.setState({userPostList:{data: this.state.userPostList.data}})
             })
-            console.log(postListIndex);
-            this.state.userPostList.data.splice(postListIndex, 1) 
-            this.setState({userPostList:{data: this.state.userPostList.data}})
-        })
-        
-        
-        
+            
+            
+            
+            }
         }
 
     
@@ -107,7 +110,7 @@ class UserPostList extends Component{
                 <Well   className='postItem'>
                 <Media>
                     <Media.Left>
-                        <img width={64} height={64} src={imgLoc }alt="thumbnail" />
+                        <img width={150} src={imgLoc }alt="thumbnail" />
                     </Media.Left>
                     <Media.Body>
                     <Media.Heading>{post.title}</Media.Heading>

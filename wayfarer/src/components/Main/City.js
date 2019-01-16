@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Row, Col, Image, FormGroup, FormControl, Form, ControlLabel, Modal, Button} from 'react-bootstrap'
+import { Row, Col, Image, FormGroup, FormControl, Form, ControlLabel, Modal, Button, Alert} from 'react-bootstrap'
 import PostList from './PostList'
 import axios from 'axios'
 
@@ -11,7 +11,9 @@ class City extends Component{
             NewPostShow: false,
             title: '',
             body: '',
-            userid: localStorage.userid
+            userid: localStorage.userid,
+            serverMessage:'',
+            messageDisplay: "none"
 
         };
    
@@ -32,11 +34,12 @@ handleBody=(e)=>{
 }
 
 handleSubmit=(e)=>{
+    var ths = this
         var formData = new FormData();
             formData.append("title", this.state.title);
             formData.append("body", this.state.body);
             formData.append("city", this.props.city.name);
-            formData.append("date",  new Date());
+            formData.append("date",  Date.now());
             formData.append("userid", this.state.userid);
             formData.append("cityid", this.props.city.id);
             formData.append("token", localStorage.getItem('token'));
@@ -44,8 +47,24 @@ handleSubmit=(e)=>{
     axios.post('http://localhost:3001/post/newpost',formData )
 
     .then( response => {
-        console.log(response);
-    })    
+        if(response.data.status==true){
+            ths.setState({
+                serverMessage:response.data.message,
+                messageDisplay:"block"
+            })
+            setTimeout(function(){
+                ths.props.handleNewPostHide()
+            },2000 )
+        }
+        else{
+            ths.setState({
+
+                serverMessage:response.data.message,
+                messageDisplay:"block"
+            })
+        }
+       
+    })  
     .catch(function(error){
         console.log(error);
     })
@@ -80,17 +99,22 @@ handleSubmit=(e)=>{
                     aria-labelledby="contained-modal-title"
                     >
                     <Modal.Header closeButton>
+                    
                         <Modal.Title id="contained-modal-title">
                     New Post
                         </Modal.Title>
                     </Modal.Header>
                     <Modal.Body>
-                    <Form>
+                    <Alert style={{display:this.state.messageDisplay}} bsStyle="warning">
+                        {this.state.serverMessage}
+                    </Alert>
+                    <Form onSubmit={this.handleSubmit}>
                         <FormGroup>
                             <ControlLabel>Title</ControlLabel>
                             <FormControl
                                 type="text"
                                 name="title"
+                                required="required"
                                 placeholder="Enter title"
                                 onChange={this.handleTitle}  />
                             <FormControl.Feedback />
@@ -98,13 +122,14 @@ handleSubmit=(e)=>{
                         <FormGroup controlId="formControlsTextarea">
                             <ControlLabel>Post Body</ControlLabel>
                             <FormControl 
+                                required="required"
                                 componentClass="textarea" 
                                 placeholder="Post body"
                                 onChange={this.handleBody}  />
                         </FormGroup>
-                        <input type="file" ref={this.fileInput}/>
+                        <input required="required" type="file" ref={this.fileInput}/>
                         <Modal.Footer>
-                            <Button onClick={this.handleSubmit}>Submit</Button>
+                            <Button type="submit">Submit</Button>
                         </Modal.Footer>
                     </Form>
                     </Modal.Body>

@@ -8,7 +8,7 @@ class Profile extends Component{
         return(
             <React.Fragment>
                 <Grid>
-                    <Row className="show-grid">
+                    <Row id="profile" className="show-grid">
                         <Col xs={12} md={4}>
                             <Panel>
                                 <Panel.Heading>
