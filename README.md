@@ -16,7 +16,7 @@ We have been commissioned to build a travel community site, Classic Traveler for
 - HTML5
 - CSS3
 - Javascript
-- MEARN APP
+- MERN APP
 - MongDB
 - Express
 - React
